@@ -8,11 +8,11 @@ namespace ClassLibrary
         {
         }
 
-        public bool IsWorking { get; set; }
+        public Boolean IsWorking { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public double HourlyWage { get; set; }
-        public long PhoneNumber { get; set; }
-        public string FullName { get; set; }
-        public long StaffId { get; set; }
+        public Double HourlyWage { get; set; }
+        public String PhoneNumber { get; set; }
+        public String FullName { get; set; }
+        public Int32 StaffId { get; set; }
     }
 }

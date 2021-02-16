@@ -57,7 +57,7 @@ namespace Testing1
             // Create new instance of the class we want to create
             clsStaff AStaff = new clsStaff();
             // Create test data
-            Int64 TestData = 07759188305;
+            String TestData = "07759188305";
             // Assign the data to the property
             AStaff.PhoneNumber = TestData;
             // Test to see that the two values are the same
@@ -81,7 +81,7 @@ namespace Testing1
             // Create new instance of the class we want to create
             clsStaff AStaff = new clsStaff();
             // Create test data
-            Int64 TestData = 8;
+            Int32 TestData = 543;
             // Assign the data to the property
             AStaff.StaffId = TestData;
             // Test to see that the two values are the same
