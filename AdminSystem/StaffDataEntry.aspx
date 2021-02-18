@@ -16,7 +16,7 @@
         <asp:TextBox ID="txtFullName" runat="server"></asp:TextBox>
         <br />
         <asp:Label ID="lblPhoneNumber" runat="server" Text="Phone Number    "></asp:Label>
-        <asp:TextBox ID="txtPhoneNumber" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtPhoneNumber" runat="server" OnTextChanged="txtPhoneNumber_TextChanged"></asp:TextBox>
         <br />
         <asp:Label ID="lblHourlyWage" runat="server" Text="Hourly Wage" width="96px"></asp:Label>
         <asp:TextBox ID="txtHourlyWage" runat="server"></asp:TextBox>
@@ -24,7 +24,7 @@
         <asp:Label ID="lblDateOfBirth" runat="server" Text="Date of Birth" width="96px"></asp:Label>
         <asp:TextBox ID="TxtDateOfBirth" runat="server" TextMode="Date"></asp:TextBox>
         <br />
-        <asp:CheckBox ID="ChkIsWorking" runat="server" Text="Is working" />
+        <asp:CheckBox ID="chkIsWorking" runat="server" Text="Is working" />
         <br />
         <asp:Label ID="lblError" runat="server"></asp:Label>
         <br />
