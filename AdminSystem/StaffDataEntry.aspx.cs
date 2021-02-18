@@ -27,9 +27,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
         AStaff.HourlyWage = Convert.ToDouble(txtHourlyWage.Text);
         // Capture Date of birth
         AStaff.DateOfBirth = Convert.ToDateTime(TxtDateOfBirth.Text);
+        // Capture the is working button
+        AStaff.IsWorking = Convert.ToBoolean(chkIsWorking.Checked);
         //Store the data in the session object
         Session["AStaff"] = AStaff;
         //Navigate user to page
         Response.Redirect("StaffViewer.aspx");
+    }
+
+    protected void txtPhoneNumber_TextChanged(object sender, EventArgs e)
+    {
+
     }
 }

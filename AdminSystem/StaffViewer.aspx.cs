@@ -21,5 +21,6 @@ public partial class _1Viewer : System.Web.UI.Page
         Response.Write(AStaff.PhoneNumber+" ");
         Response.Write(AStaff.HourlyWage+" ");
         Response.Write(AStaff.DateOfBirth+" ");
+        Response.Write(AStaff.IsWorking + " ");
     }
 }

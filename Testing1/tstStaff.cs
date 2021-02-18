@@ -87,5 +87,126 @@ namespace Testing1
             // Test to see that the two values are the same
             Assert.AreEqual(AStaff.StaffId, TestData);
         }
+        [TestMethod]
+        public void FindMethodOk()
+        {
+            // Create new instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            // Create test data
+            Boolean Found = false;
+            // Create some test data to use the method with
+            String Name = "Josh Harrison";
+            // invoke the method
+            Found = AStaff.Find(Name);
+            // Test to see that the value is present
+            Assert.IsTrue(Found);
+        }
+        [TestMethod]
+        public void TestFullNameFound()
+        {
+            // Create new instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            // boolean varaible to store the result of the search
+            Boolean Found = false;
+            // boolean variable to record if data is ok(Assume it it)
+            Boolean OK = true;
+            // Create some test data to use the method with
+            String FullName = "Josh Harrison";
+            // invoke the method
+            Found = AStaff.Find(FullName);
+            //check the name
+            if(AStaff.FullName != "Josh Harrison")
+            {
+                OK = false;
+            }
+            // Test to see that the value is present
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestDateOfBirthFound()
+        {
+            // Create new instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            // boolean varaible to store the result of the search
+            Boolean Found = false;
+            // boolean variable to record if data is ok(Assume it it)
+            Boolean OK = true;
+            // Create some test data to use the method with
+            String FullName = "Josh Harrison";
+            // invoke the method
+            Found = AStaff.Find(FullName);
+            //check the name
+            if (AStaff.DateOfBirth != Convert.ToDateTime("07/11/2000"))
+            {
+                OK = false;
+            }
+            // Test to see that the value is present
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestPhoneNumberFound()
+        {
+            // Create new instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            // boolean varaible to store the result of the search
+            Boolean Found = false;
+            // boolean variable to record if data is ok(Assume it it)
+            Boolean OK = true;
+            // Create some test data to use the method with
+            String FullName = "Josh Harrison";
+            // invoke the method
+            Found = AStaff.Find(FullName);
+            //check the name
+            if (AStaff.PhoneNumber != ("07759188304"))
+            {
+                OK = false;
+            }
+            // Test to see that the value is present
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestHourlyWageFound()
+        {
+            // Create new instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            // boolean varaible to store the result of the search
+            Boolean Found = false;
+            // boolean variable to record if data is ok(Assume it it)
+            Boolean OK = true;
+            // Create some test data to use the method with
+            String FullName = "Josh Harrison";
+            // invoke the method
+            Found = AStaff.Find(FullName);
+            //check the name
+            if (AStaff.HourlyWage != Convert.ToDouble("8.5"))
+            {
+                OK = false;
+            }
+            // Test to see that the value is present
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestStaffIdFound()
+        {
+            // Create new instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            // boolean varaible to store the result of the search
+            Boolean Found = false;
+            // boolean variable to record if data is ok(Assume it it)
+            Boolean OK = true;
+            // Create some test data to use the method with
+            String FullName = "Josh Harrison";
+            // invoke the method
+            Found = AStaff.Find(FullName);
+            //check the name
+            if (AStaff.StaffId != 1)
+            {
+                OK = false;
+            }
+            // Test to see that the value is present
+            Assert.IsTrue(OK);
+        }
+
+
     }
 }
