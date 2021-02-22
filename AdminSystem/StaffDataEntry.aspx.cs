@@ -18,7 +18,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         // create new instance 
         clsStaff AStaff = new clsStaff();
         // Capture Staff ID
-        AStaff.StaffId = Convert.ToInt32(txtStafId.Text);
+        AStaff.StaffId = Convert.ToInt32(txtStaffId.Text);
         // Capture the full name
         AStaff.FullName = txtFullName.Text;
         // Capture the phone number
@@ -37,6 +37,31 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void txtPhoneNumber_TextChanged(object sender, EventArgs e)
     {
+
+    }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        // New instance of staff class
+        clsStaff AStaff = new clsStaff();
+        // variable to store primary key
+        Int32 StaffId;
+        // variable for the result
+        Boolean Found = false;
+        // get primary key entered by user
+        StaffId = Convert.ToInt32(txtStaffId.Text);
+        //find the record
+        Found = AStaff.Find(StaffId);
+        // if found 
+        if(Found == true)
+        {
+            txtStaffId.Text = AStaff.StaffId.ToString();
+            txtFullName.Text = AStaff.FullName;
+            txtPhoneNumber.Text = AStaff.PhoneNumber;
+            txtHourlyWage.Text = AStaff.HourlyWage.ToString();
+            TxtDateOfBirth.Text = AStaff.DateOfBirth.ToString();
+        }
+
 
     }
 }
