@@ -95,9 +95,9 @@ namespace Testing1
             // Create test data
             Boolean Found = false;
             // Create some test data to use the method with
-            String Name = "Josh Harrison";
+            int Id = 1;
             // invoke the method
-            Found = AStaff.Find(Name);
+            Found = AStaff.Find(Id);
             // Test to see that the value is present
             Assert.IsTrue(Found);
         }
@@ -111,9 +111,9 @@ namespace Testing1
             // boolean variable to record if data is ok(Assume it it)
             Boolean OK = true;
             // Create some test data to use the method with
-            String FullName = "Josh Harrison";
+            int Id = 1;
             // invoke the method
-            Found = AStaff.Find(FullName);
+            Found = AStaff.Find(Id);
             //check the name
             if(AStaff.FullName != "Josh Harrison")
             {
@@ -132,9 +132,9 @@ namespace Testing1
             // boolean variable to record if data is ok(Assume it it)
             Boolean OK = true;
             // Create some test data to use the method with
-            String FullName = "Josh Harrison";
+            int Id = 1;
             // invoke the method
-            Found = AStaff.Find(FullName);
+            Found = AStaff.Find(Id);
             //check the name
             if (AStaff.DateOfBirth != Convert.ToDateTime("07/11/2000"))
             {
@@ -153,9 +153,9 @@ namespace Testing1
             // boolean variable to record if data is ok(Assume it it)
             Boolean OK = true;
             // Create some test data to use the method with
-            String FullName = "Josh Harrison";
+            int Id = 1;
             // invoke the method
-            Found = AStaff.Find(FullName);
+            Found = AStaff.Find(Id);
             //check the name
             if (AStaff.PhoneNumber != ("07759188304"))
             {
@@ -174,9 +174,9 @@ namespace Testing1
             // boolean variable to record if data is ok(Assume it it)
             Boolean OK = true;
             // Create some test data to use the method with
-            String FullName = "Josh Harrison";
+            int Id = 1;
             // invoke the method
-            Found = AStaff.Find(FullName);
+            Found = AStaff.Find(Id);
             //check the name
             if (AStaff.HourlyWage != Convert.ToDouble("8.5"))
             {
@@ -195,9 +195,9 @@ namespace Testing1
             // boolean variable to record if data is ok(Assume it it)
             Boolean OK = true;
             // Create some test data to use the method with
-            String FullName = "Josh Harrison";
+            int Id = 1;
             // invoke the method
-            Found = AStaff.Find(FullName);
+            Found = AStaff.Find(Id);
             //check the name
             if (AStaff.StaffId != 1)
             {

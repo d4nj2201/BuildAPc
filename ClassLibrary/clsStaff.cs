@@ -92,14 +92,14 @@ namespace ClassLibrary
             }
         }
 
-        public bool Find(string name)
+        public bool Find(Int32 staffId)
         {
             //Create instance of the data connection
             clsDataConnection DB = new clsDataConnection();
             // Add parameter for the full name to seacrh
-            DB.AddParameter("FullName", name);
+            DB.AddParameter("StaffId", staffId);
             // Execute filter
-            DB.Execute("sproc_tblStaff_FilterByFullName");
+            DB.Execute("sproc_tblStaff_FilterByStaffId");
             // If a record is found
             if (DB.Count == 1){
                 // set the private data members
