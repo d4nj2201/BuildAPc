@@ -102,7 +102,171 @@ namespace TestingParts
             //test the two values are the same
             Assert.AreEqual(aPart.Wattage, testData);
         }
-        
-        
+
+        [TestMethod]
+        public void FindMethodOk()
+        {
+            //new instance
+            clsParts aPart = new clsParts();
+            //boolean variable soring validation results
+            Boolean found = false;
+            //create test data
+            Int32 partId = 123456;
+            //invoke method
+            found = aPart.Find(partId);
+            //test if true
+            Assert.IsTrue(found);
+        }
+
+        [TestMethod]
+        public void TestPartIdFound()
+        {
+            //new instance
+            clsParts aPart = new clsParts();
+            //boolean variable soring validation results
+            Boolean found = false;
+            //boolean recording if data is ok
+            Boolean ok = true;
+            //create test data
+            Int32 partId = 21;
+            //invoke method
+            found = aPart.Find(partId);
+            //check PartId
+            if (aPart.PartId != 21)
+            {
+                ok = false;
+            }
+            //test if true
+            Assert.IsTrue(ok);
+        }
+        [TestMethod]
+        public void TestPartDescriptionFound()
+        {
+            //new instance
+            clsParts aPart = new clsParts();
+            //boolean variable soring validation results
+            Boolean found = false;
+            //boolean recording if data is ok
+            Boolean ok = true;
+            //create test data
+            Int32 partId = 21;
+            //invoke method
+            found = aPart.Find(partId);
+            //check PartId
+            if (aPart.PartDescription != "test description")
+            {
+                ok = false;
+            }
+            //test if true
+            Assert.IsTrue(ok);
+        }
+        [TestMethod]
+        public void TestPartTypeFound()
+        {
+            //new instance
+            clsParts aPart = new clsParts();
+            //boolean variable soring validation results
+            Boolean found = false;
+            //boolean recording if data is ok
+            Boolean ok = true;
+            //create test data
+            Int32 partId = 21;
+            //invoke method
+            found = aPart.Find(partId);
+            //check PartId
+            if (aPart.PartType != "testing")
+            {
+                ok = false;
+            }
+            //test if true
+            Assert.IsTrue(ok);
+        }
+        [TestMethod]
+        public void TestDateAddedFound()
+        {
+            //new instance
+            clsParts aPart = new clsParts();
+            //boolean variable soring validation results
+            Boolean found = false;
+            //boolean recording if data is ok
+            Boolean ok = true;
+            //create test data
+            Int32 partId = 21;
+            //invoke method
+            found = aPart.Find(partId);
+            //check PartId
+            if (aPart.DateAdded != Convert.ToDateTime("01/01/2001"))
+            {
+                ok = false;
+            }
+            //test if true
+            Assert.IsTrue(ok);
+        }
+        [TestMethod]
+        public void TestPriceFound()
+        {
+            //new instance
+            clsParts aPart = new clsParts();
+            //boolean variable soring validation results
+            Boolean found = false;
+            //boolean recording if data is ok
+            Boolean ok = true;
+            //create test data
+            Int32 partId = 21;
+            //invoke method
+            found = aPart.Find(partId);
+            //check PartId
+            if (aPart.Price != 2.5)
+            {
+                ok = false;
+            }
+            //test if true
+            Assert.IsTrue(ok);
+        }
+        [TestMethod]
+        public void TestWattageFound()
+        {
+            //new instance
+            clsParts aPart = new clsParts();
+            //boolean variable soring validation results
+            Boolean found = false;
+            //boolean recording if data is ok
+            Boolean ok = true;
+            //create test data
+            Int32 partId = 21;
+            //invoke method
+            found = aPart.Find(partId);
+            //check PartId
+            if (aPart.Wattage != 50)
+            {
+                ok = false;
+            }
+            //test if true
+            Assert.IsTrue(ok);
+        }
+        [TestMethod]
+        public void TestAvailableFound()
+        {
+            //new instance
+            clsParts aPart = new clsParts();
+            //boolean variable soring validation results
+            Boolean found = false;
+            //boolean recording if data is ok
+            Boolean ok = true;
+            //create test data
+            Int32 partId = 21;
+            //invoke method
+            found = aPart.Find(partId);
+            //check PartId
+            if (aPart.Available != true)
+            {
+                ok = false;
+            }
+            //test if true
+            Assert.IsTrue(ok);
+        }
+
+
+
     }
 }
