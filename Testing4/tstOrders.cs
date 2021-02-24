@@ -35,6 +35,7 @@ namespace TestingOrders
             //create an instance of the class we want to create.
             clsOrder AnOrder = new clsOrder();
             //create some test data to assign to the property.
+            //test
             DateTime TestData = DateTime.Now.Date;
             //assign the data to the property.
             AnOrder.DateAdded = TestData;
