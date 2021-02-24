@@ -117,5 +117,10 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string username, string password, string address, string dateAdded)
+        {
+            return "";
+        }
     }
 }
