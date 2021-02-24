@@ -6,5 +6,6 @@ namespace ClassLibrary
     {
         public bool Active { get; set; }
         public DateTime DateAdded { get; set; }
+        public string Town { get; set; }
     }
 }

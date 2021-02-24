@@ -41,5 +41,19 @@ namespace TestingOrders
             //test to see that the two values are equal.
             Assert.AreEqual(AnOrder.DateAdded, TestData);
         }
+
+      
+        [TestMethod]
+        public void AddressPropertyOK()
+        {
+            //create an instance of the class we want to create.
+            clsOrder AnOrder = new clsOrder();
+            //create some test data to assign to the property.
+            string TestData = "Leicester";
+            //assign the data to the property.
+            AnOrder.Town = TestData;
+            //test to see that the two values are equal.
+            Assert.AreEqual(AnOrder.Town, TestData);
+        }
     }
 }
