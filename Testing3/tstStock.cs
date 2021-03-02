@@ -102,7 +102,7 @@ namespace TestingStock
             //Boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 StockID = 5;
+            Int32 StockID = 13;
             //Invoke the method
             Found = AStock.Find(StockID);
             //test to see if the result is true
@@ -119,11 +119,11 @@ namespace TestingStock
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StockID = 5;
+            Int32 StockID = 13;
             //Invoke the method
             Found = AStock.Find(StockID);
             //check the stock ID
-            if(AStock.StockID != 5)
+            if(AStock.StockID != 13)
             {
                 OK = false;
             }
@@ -141,7 +141,7 @@ namespace TestingStock
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StockID = 5;
+            Int32 StockID = 13;
             //Invoke the method
             Found = AStock.Find(StockID);
             //check the property
@@ -163,11 +163,11 @@ namespace TestingStock
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StockID = 5;
+            Int32 StockID = 13;
             //Invoke the method
             Found = AStock.Find(StockID);
             //check the property
-            if (AStock.Description != "Test Description")
+            if (AStock.Description != "CORSAIR VENGEANCE DDR4 16GB 3200MHZ")
             {
                 OK = false;
             }
@@ -185,11 +185,11 @@ namespace TestingStock
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StockID = 5;
+            Int32 StockID = 13;
             //Invoke the method
             Found = AStock.Find(StockID);
             //check the property
-            if (AStock.Price != Convert.ToDouble("65.99"))
+            if (AStock.Price != Convert.ToDouble("64.99"))
             {
                 OK = false;
             }
@@ -207,11 +207,11 @@ namespace TestingStock
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StockID = 5;
+            Int32 StockID = 13;
             //Invoke the method
             Found = AStock.Find(StockID);
             //check the property
-            if (AStock.Quantity != Convert.ToInt32("10"))
+            if (AStock.Quantity != Convert.ToInt32("100"))
             {
                 OK = false;
             }
@@ -229,7 +229,7 @@ namespace TestingStock
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StockID = 5;
+            Int32 StockID = 13;
             //Invoke the method
             Found = AStock.Find(StockID);
             //check the property

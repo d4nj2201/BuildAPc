@@ -4,7 +4,7 @@ namespace ClassLibrary
 {
     public class clsStock
     {
-        //private data member for the Stock ID property
+        //private data member for the properties
         private Int32 mStockID;
         private DateTime mLastEdited;
         private string mDescription;
@@ -87,13 +87,31 @@ namespace ClassLibrary
 
         public bool Find(int StockID)
         {
-            mStockID = 5;
-            mLastEdited = Convert.ToDateTime("13/02/2021");
-            mDescription = "Test Description";
-            mPrice = Convert.ToDouble("65.99");
-            mQuantity = Convert.ToInt32("10");
-            mInStock = true;
-            return true;
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add parameter for the stock ID to search for
+            DB.AddParameter("@StockID", StockID);
+            //execute the stored procedure
+            DB.Execute("sproc_tblStock_FilterByStockID");
+            //if one record is found (should only be either 1 or 0)
+            if (DB.Count == 1)
+            {
+                //copy the data from the database to the private data members
+                mStockID = Convert.ToInt32(DB.DataTable.Rows[0]["StockID"]);
+                mDescription = Convert.ToString(DB.DataTable.Rows[0]["Description"]);
+                mLastEdited = Convert.ToDateTime(DB.DataTable.Rows[0]["LastEdited"]);
+                mPrice = Convert.ToDouble(DB.DataTable.Rows[0]["Price"]);
+                mQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["Quantity"]);
+                mInStock = Convert.ToBoolean(DB.DataTable.Rows[0]["InStock"]);
+                //return that everything worked OK
+                return true;
+            }
+            //if no record was found
+            else
+            {
+                //return false indicating a problem
+                return false;
+            }
         }
     }
 }
