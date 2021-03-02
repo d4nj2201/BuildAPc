@@ -120,5 +120,45 @@ namespace ClassLibrary
             }
         }
 
-    }
+        public string Valid(string staffId, string fullName, string dateOfBirth, string hourlyWage, string phoneNumber)
+        {
+            // Create string variable to store the error
+            String Error = " ";
+
+            DateTime TempDate;
+            
+            // if the full name is blank 
+            if (fullName.Length == 0)
+            {
+                Error = Error + "The Full name may be blank: ";
+            }
+            // if the full name has one more than the max 
+            if (fullName.Length > 50)
+            {
+                Error = Error + "The Full name may contain more than 50 characters: ";
+            }
+            try
+            {
+                TempDate = Convert.ToDateTime(dateOfBirth);
+                if (TempDate > DateTime.Now.Date)
+                {
+                    Error = Error + "The Date of birth cannot be in the future: ";
+                }
+            }
+            catch
+            {
+                Error = Error + "The date was not a valid date: ";
+            }
+            if (phoneNumber.Length != 11)
+            {
+                Error = Error + "The phone number may not have 11 digits: ";
+            }
+            if (Convert.ToDouble(hourlyWage) < 4.15)
+            {
+                Error = Error + "The wage entered is less than the minimum wage: ";
+            }
+            return Error;
+        }
+        
+}
 }
