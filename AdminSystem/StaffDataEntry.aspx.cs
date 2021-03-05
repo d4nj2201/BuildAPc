@@ -18,21 +18,42 @@ public partial class _1_DataEntry : System.Web.UI.Page
         // create new instance 
         clsStaff AStaff = new clsStaff();
         // Capture Staff ID
-        AStaff.StaffId = Convert.ToInt32(txtStaffId.Text);
+        string StaffId = txtStaffId.Text;
         // Capture the full name
-        AStaff.FullName = txtFullName.Text;
+        string FullName = txtFullName.Text;
         // Capture the phone number
-        AStaff.PhoneNumber = txtPhoneNumber.Text;
+        string PhoneNumber = txtPhoneNumber.Text;
         // Capture the Hourly Wage
-        AStaff.HourlyWage = Convert.ToDouble(txtHourlyWage.Text);
+        string HourlyWage = txtHourlyWage.Text;
         // Capture Date of birth
-        AStaff.DateOfBirth = Convert.ToDateTime(TxtDateOfBirth.Text);
-        // Capture the is working button
-        AStaff.IsWorking = Convert.ToBoolean(chkIsWorking.Checked);
-        //Store the data in the session object
-        Session["AStaff"] = AStaff;
-        //Navigate user to page
-        Response.Redirect("StaffViewer.aspx");
+        string DateOfBirth = TxtDateOfBirth.Text;
+        // Set Error 
+        string Error = " ";
+        // validate the data
+        Error = AStaff.Valid(StaffId, FullName, DateOfBirth, HourlyWage, PhoneNumber);
+        if (Error == " ")
+        {
+            // Capture Staff ID
+            AStaff.StaffId = Convert.ToInt32(txtStaffId.Text);
+            // Capture the full name
+            AStaff.FullName = txtFullName.Text;
+            // Capture the phone number
+            AStaff.PhoneNumber = txtPhoneNumber.Text;
+            // Capture the Hourly Wage
+            AStaff.HourlyWage = Convert.ToDouble(txtHourlyWage.Text);
+            // Capture Date of birth
+            AStaff.DateOfBirth = Convert.ToDateTime(TxtDateOfBirth.Text);
+            // Capture the is working button
+            AStaff.IsWorking = Convert.ToBoolean(chkIsWorking.Checked);
+            //Store the data in the session object
+            Session["AStaff"] = AStaff;
+            //Navigate user to page
+            Response.Redirect("StaffViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
     }
 
     protected void txtPhoneNumber_TextChanged(object sender, EventArgs e)

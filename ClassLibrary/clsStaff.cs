@@ -153,12 +153,20 @@ namespace ClassLibrary
             {
                 Error = Error + "The phone number may not have 11 digits: ";
             }
-            if (Convert.ToDouble(hourlyWage) < 4.15)
+            try
             {
-                Error = Error + "The wage entered is less than the minimum wage: ";
+                if (Convert.ToDouble(hourlyWage) < 4.15)
+                {
+                    Error = Error + "The wage entered is less than the minimum wage: ";
+                }
+            }
+            catch
+            {
+                Error = Error + "The wage entered is not formatted correctly";
             }
             return Error;
+            }
+          
         }
         
-}
 }
