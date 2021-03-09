@@ -18,11 +18,41 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsStock
         clsStock AStock = new clsStock();
         //capture the StockID
-        AStock.StockID = Convert.ToInt32(txtStockID.Text);
-        //Store the stock ID in the session object
-        Session["AStock"] = AStock;
-        //navigate to the viewer page
-        Response.Redirect("StockViewer.aspx");
+        string StockID = txtStockID.Text;
+        //capture the description
+        string Description = txtDescription.Text;
+        //capture the last edited date
+        string LastEdited = txtLastEdited.Text;
+        //capture the price
+        string Price = txtPrice.Text;
+        //capture the quantity
+        string Quantity = txtQuantity.Text;
+        //variable to store any error messages
+        string Error = "";
+        //validate the data
+        Error = AStock.Valid(StockID, Description, LastEdited, Price, Quantity);
+        if (Error == "")
+        {
+            //capture the StockID
+            AStock.StockID = Convert.ToInt32(StockID);
+            //capture the description
+            AStock.Description = Description;
+            //capture the last edited date
+            AStock.LastEdited = Convert.ToDateTime(LastEdited);
+            //capture the price
+            AStock.Price = Convert.ToDouble(Price);
+            //capture the quantity
+            AStock.Quantity = Convert.ToInt32(Quantity);
+            //store the stock in the session object
+            Session["AStock"] = AStock;
+            //redirect to the viewer page
+            Response.Redirect("StockViewer.aspx");//results view needs fixing
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
