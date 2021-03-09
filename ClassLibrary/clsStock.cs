@@ -113,5 +113,79 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string stockID, string description, string lastEdited, string price, string quantity)
+        {
+            //create a string variable to store the method
+            string Error = "";
+            //create temporary variable to store date values
+            DateTime DateTemp;
+            //create temp variable to store price value
+            double PriceTemp;
+            //create temp variable to store quantity value
+            int QuantityTemp;
+            //if the Description is blank
+            if (description.Length == 0)
+            {
+                //record the error
+                Error = Error + "the description may not be blank : ";
+            }
+            //if the description is greater than 50 characters
+            if (description.Length > 50)
+            {
+                Error = Error + "the description must be no more than 50 characters";
+            }
+            try
+            {
+                //copy dateAdded value to DateTemp variable
+                DateTemp = Convert.ToDateTime(lastEdited);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                //check to see if the date is greater than todays date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date : ";
+            }
+            try
+            {
+                PriceTemp = Convert.ToDouble(price);
+                if (PriceTemp < 0.01)
+                {
+                    //record the error
+                    Error = Error + "The price cannot be less than £0.01 : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The price was not a valid price : ";
+            }
+            try
+            {
+                QuantityTemp = Convert.ToInt32(quantity);
+                if (QuantityTemp < 0)
+                {
+                    //record the error
+                    Error = Error + "The quantity cannot be less than 0 : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The quantity was not a valid quantity : ";
+            }
+            //return any error messages
+            return Error;
+        }
     }
 }
