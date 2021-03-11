@@ -24,9 +24,9 @@ namespace TestingOrders
             //create some test data to assign to the property.
             Boolean TestData = true;
             //assing the data to the property.
-            AnOrder.Active = TestData;
+            AnOrder.Payed = TestData;
             //test to see that the two values are the same.
-            Assert.AreEqual(AnOrder.Active, TestData);
+            Assert.AreEqual(AnOrder.Payed, TestData);
         }
 
         [TestMethod]
