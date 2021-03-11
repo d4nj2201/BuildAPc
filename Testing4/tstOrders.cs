@@ -56,5 +56,60 @@ namespace TestingOrders
             //test to see that the two values are equal.
             Assert.AreEqual(AnOrder.Town, TestData);
         }
+
+
+        [TestMethod]
+        public void DeliveredPropertyOK()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean TestData = true;
+            AnOrder.Delivered = TestData;
+            Assert.AreEqual(AnOrder.Delivered, TestData);
+        }
+
+        [TestMethod]
+        public void FullNamePropertyOK()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string TestData = "Patrick Carroll";
+            AnOrder.Name = TestData;
+            Assert.AreEqual(AnOrder.Name, TestData);
+        }
+
+        [TestMethod]
+        public void OrderContentsPropertyOK()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string TestData = "some motherboard";
+            AnOrder.Contents = TestData;
+            Assert.AreEqual(AnOrder.Contents, TestData);
+        }
+
+        [TestMethod]
+        public void OrderIDPropertyOK()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Int32 TestData = 1234;
+            AnOrder.ID = TestData;
+            Assert.AreEqual(AnOrder.ID, TestData);
+        }
+
+        [TestMethod]
+        public void CustomerIDPropertyOK()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Int32 TestData = 1234;
+            AnOrder.CustomerID = TestData;
+            Assert.AreEqual(AnOrder.CustomerID, TestData);
+        }
+
+        [TestMethod]
+        public void TotalPropertyOK()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Double TestData = 20.0;
+            AnOrder.Total = TestData;
+            Assert.AreEqual(AnOrder.Total, TestData);
+        }
     }
 }
