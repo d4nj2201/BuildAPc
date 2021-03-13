@@ -5,8 +5,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Testing1
 {
     [TestClass]
-    public class tstStaff
+    public class TstStaff
     {
+
+
         //Good test data
         //create some test data to pass to the method
         String StaffId = "1";
