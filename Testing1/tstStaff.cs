@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Testing1
 {
     [TestClass]
-    public class TstStaff
+    public class tstStaff
     {
 
 
