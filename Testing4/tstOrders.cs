@@ -89,7 +89,7 @@ namespace TestingOrders
         public void OrderIDPropertyOK()
         {
             clsOrder AnOrder = new clsOrder();
-            Int32 TestData = 1234;
+            string TestData = "1234";
             AnOrder.ID = TestData;
             Assert.AreEqual(AnOrder.ID, TestData);
         }

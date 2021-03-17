@@ -14,7 +14,10 @@ public partial class _1Viewer : System.Web.UI.Page
         clsOrder AnOrder = new clsOrder();
         //get the data from the session object.
         AnOrder = (clsOrder)Session["AnName"];
+        AnOrder = (clsOrder)Session["AnID"];
         //display the full name for this entry
         Response.Write(AnOrder.Name);
+        Response.Write(AnOrder.ID);
+        Response.Write(AnOrder.Town);
     }
 }

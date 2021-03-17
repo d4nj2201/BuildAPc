@@ -10,7 +10,7 @@ namespace ClassLibrary
         public bool Delivered { get; set; }
         public string Name { get; set; }
         public string Contents { get; set; }
-        public int ID { get; set; }
+        public string ID { get; set; }
         public int CustomerID { get; set; }
         public double Total { get; set; }
     }

@@ -17,11 +17,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //Create a new instance of clsOrder
         clsOrder AnOrder = new clsOrder();
+
         //capture the full name
         AnOrder.Name = txtFullName.Text;
         //store the name in the session object.
         Session["AnName"] = AnOrder;
+
+        //capture the order ID
+        AnOrder.ID = txtOrderID.Text;
+        Session["AnID"] = AnOrder;
         //Navigate to the view page.
+
+        //capture the address
+        AnOrder.Town = txtAddress.Text;
+        Session["AnAddress"] = AnOrder;
+
+
         Response.Redirect("Orders.aspx");
+
+        
+        
     }
 }
