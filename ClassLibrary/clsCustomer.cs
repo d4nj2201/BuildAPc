@@ -120,7 +120,41 @@ namespace ClassLibrary
 
         public string Valid(string username, string password, string address, string dateAdded)
         {
-            return "";
+            //create a string variable to store the error
+            String Error = "";
+            //create a temporary variable to store the date values
+            DateTime DateTemp;
+            //if the Username is blank
+            if (username.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Username may not be blank : ";
+            }
+            //if the username is greater than 10 characters
+            if (username.Length > 10)
+            {
+                //record the error
+                Error = Error + "The username must be less than 10 characters : ";
+            }
+            //copy the dateAdded value to the DateTemp variable
+            DateTemp = Convert.ToDateTime(dateAdded);
+            if (DateTemp < DateTime.Now.Date)
+            {
+                //record the error
+                Error = Error + "The date cannot be in the past : ";
+               
+            }
+            //check to see if the date is greater than today's date
+
+            if (DateTemp > DateTime.Now.Date)
+            {
+                //record the error
+                Error = Error + "The date cannot be in the future : ";
+            }
+            //return any error messages
+
+            return Error;
         }
+
     }
 }
