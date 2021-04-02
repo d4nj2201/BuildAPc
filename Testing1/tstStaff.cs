@@ -529,5 +529,31 @@ namespace Testing1
             // test to see that the value is correct
             Assert.AreEqual(Error, " ");
         }
+        [TestMethod]
+        public void AddMethodOk()
+        {
+            // Create new instance of the class we want to create
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            // creat the item of test data
+            clsStaff TestItem = new clsStaff();
+            // Var to store primary key
+            Int32 PrimaryKey = 0;
+            // set its properties
+            TestItem.IsWorking = true;
+            TestItem.FullName = "Natasha Longboy";
+            TestItem.HourlyWage = 7.5;
+            TestItem.PhoneNumber = "07759188504";
+            TestItem.DateOfBirth = Convert.ToDateTime("09 / 03 / 1986");
+            // Set ThisStaff to the test data
+            AllStaff.ThisStaff = TestItem;
+            // add the record
+            PrimaryKey = AllStaff.Add();
+            //set the primary key of the test data
+            TestItem.StaffId = PrimaryKey;
+            // find the record
+            AllStaff.ThisStaff.Find(PrimaryKey);
+            // Test to see that the two values are the same
+            Assert.AreEqual(AllStaff.ThisStaff, TestItem);
+            }
     }
 }

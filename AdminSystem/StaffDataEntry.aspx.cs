@@ -36,19 +36,22 @@ public partial class _1_DataEntry : System.Web.UI.Page
             // Capture Staff ID
             AStaff.StaffId = Convert.ToInt32(txtStaffId.Text);
             // Capture the full name
-            AStaff.FullName = txtFullName.Text;
+            AStaff.FullName = FullName;
             // Capture the phone number
-            AStaff.PhoneNumber = txtPhoneNumber.Text;
+            AStaff.PhoneNumber = PhoneNumber;
             // Capture the Hourly Wage
-            AStaff.HourlyWage = Convert.ToDouble(txtHourlyWage.Text);
+            AStaff.HourlyWage = Convert.ToDouble(HourlyWage);
             // Capture Date of birth
-            AStaff.DateOfBirth = Convert.ToDateTime(TxtDateOfBirth.Text);
+            AStaff.DateOfBirth = Convert.ToDateTime(DateOfBirth);
             // Capture the is working button
-            AStaff.IsWorking = Convert.ToBoolean(chkIsWorking.Checked);
+            AStaff.IsWorking = chkIsWorking.Checked;
+            clsStaffCollection StaffList = new clsStaffCollection();
+            // set the ThisStaff property
+            StaffList.ThisStaff = AStaff;
             //Store the data in the session object
-            Session["AStaff"] = AStaff;
+            StaffList.Add();
             //Navigate user to page
-            Response.Redirect("StaffViewer.aspx");
+            Response.Redirect("StaffList.aspx");
         }
         else
         {
@@ -83,6 +86,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
             TxtDateOfBirth.Text = AStaff.DateOfBirth.ToString();
         }
 
+
+    }
+
+    protected void txtStaffId_TextChanged(object sender, EventArgs e)
+    {
 
     }
 }
