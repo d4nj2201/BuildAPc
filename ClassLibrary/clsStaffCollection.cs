@@ -6,6 +6,11 @@ namespace ClassLibrary
 {
     public class clsStaffCollection
     {
+        //private data member for the list
+        List<clsStaff> mStaffList = new List<clsStaff>();
+
+        // private data member thisStaff
+        clsStaff mThisStaff = new clsStaff();
         public clsStaffCollection()
         {
             Int32 Index = 0;
@@ -30,8 +35,7 @@ namespace ClassLibrary
             
 
         }
-        //private data member for the list
-        List<clsStaff> mStaffList = new List<clsStaff>();
+
         public List<clsStaff> StaffList {
             get
             {
@@ -55,6 +59,34 @@ namespace ClassLibrary
                 // worry about later
             }
                 }
-        public clsStaff ThisStaff { get; set; }
+        public clsStaff ThisStaff
+        {
+            get
+            {
+                // returns private this staff value
+                return  mThisStaff;
+            }
+
+            set
+            {
+                // Set the private data value
+                mThisStaff = value;
+            }
+        }
+
+        public int Add()
+        {
+            //adds a new record to the database based on the values of mthisstaff
+            // connect to database
+            clsDataConnection DB = new clsDataConnection();
+            // Set the parameters for the stored procedure
+            DB.AddParameter("@FullName", mThisStaff.FullName);
+            DB.AddParameter("@PhoneNumber",mThisStaff.PhoneNumber);
+            DB.AddParameter("@HourlyWage", mThisStaff.HourlyWage);
+            DB.AddParameter("@DateOfBirth", mThisStaff.DateOfBirth);
+            DB.AddParameter("@IsWorking", mThisStaff.IsWorking);
+
+            return DB.Execute("sproc_tblStaff_Insert");
+        }
     }
 }

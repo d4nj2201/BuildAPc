@@ -11,6 +11,7 @@
         <div>
             <asp:ListBox ID="lstStaffList" runat="server" Height="198px" OnSelectedIndexChanged="lstStaffList_SelectedIndexChanged" style="margin-top: 0px" Width="240px" AutoPostBack="True"></asp:ListBox>
         </div>
+        <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" />
     </form>
 </body>
 </html>
