@@ -125,7 +125,7 @@ namespace Testing1
             // invoke the method
             Found = AStaff.Find(Id);
             //check the name
-            if(AStaff.FullName != "Josh Harrison")
+            if (AStaff.FullName != "Josh Harrison")
             {
                 OK = false;
             }
@@ -219,15 +219,15 @@ namespace Testing1
         [TestMethod]
         public void ValidMethodOk()
         {
-        // Create new instance of the class we want to create
-        clsStaff AStaff = new clsStaff();
-        // String varaible to store error message
-        String Error = " ";
+            // Create new instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            // String varaible to store error message
+            String Error = " ";
             // Invoke the method
             Error = AStaff.Valid(StaffId, FullName, DateOfBirth, HourlyWage, PhoneNumber);
-        // test 
-        Assert.AreEqual(Error, " ");
-    }
+            // test 
+            Assert.AreEqual(Error, " ");
+        }
         [TestMethod]
         public void FullNameMinMinusOne()
         {
@@ -432,8 +432,8 @@ namespace Testing1
             // String varaible to store error message
             String Error = " ";
             // create test value
-            string PhoneNumber =""; 
-            PhoneNumber = PhoneNumber.PadRight(10,'1'); // this should fail
+            string PhoneNumber = "";
+            PhoneNumber = PhoneNumber.PadRight(10, '1'); // this should fail
             //Invoke the method 
             Error = AStaff.Valid(StaffId, FullName, DateOfBirth, HourlyWage, PhoneNumber);
             // test to see that the value is correct
@@ -477,7 +477,7 @@ namespace Testing1
             // String varaible to store error message
             String Error = " ";
             // create test value
-            double TestWage = 4.05 ;
+            double TestWage = 4.05;
             HourlyWage = Convert.ToString(TestWage); // this should fail
             //Invoke the method 
             Error = AStaff.Valid(StaffId, FullName, DateOfBirth, HourlyWage, PhoneNumber);
@@ -554,6 +554,112 @@ namespace Testing1
             AllStaff.ThisStaff.Find(PrimaryKey);
             // Test to see that the two values are the same
             Assert.AreEqual(AllStaff.ThisStaff, TestItem);
+        }
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            // Create new instance of the class we want to create
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            // creat the item of test data
+            clsStaff TestItem = new clsStaff();
+            // Var to store primary key
+            Int32 PrimaryKey = 0;
+            // set its properties
+            TestItem.IsWorking = true;
+            TestItem.FullName = "Natasha Longboy";
+            TestItem.HourlyWage = 7.5;
+            TestItem.PhoneNumber = "07759188504";
+            TestItem.DateOfBirth = Convert.ToDateTime("09 / 03 / 1986");
+            // Set ThisStaff to the test data
+            AllStaff.ThisStaff = TestItem;
+            // add the record
+            PrimaryKey = AllStaff.Add();
+            //set the primary key of the test data
+            TestItem.StaffId = PrimaryKey;
+            //modify the test data
+            TestItem.IsWorking = false;
+            TestItem.FullName = "Ben Foster";
+            TestItem.HourlyWage = 8.0;
+            TestItem.PhoneNumber = "01234564892";
+            TestItem.DateOfBirth = Convert.ToDateTime("09 / 03 / 2000");
+            //set the record based on the new test data
+            AllStaff.ThisStaff = TestItem;
+            //update record
+            AllStaff.Update();
+            //find the recrd
+            AllStaff.ThisStaff.Find(PrimaryKey);
+            //test it
+            Assert.AreEqual(AllStaff.ThisStaff, TestItem);
+
+        }
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            // create an instance of the class we want to create
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            // create the item of test data
+            clsStaff TestItem = new clsStaff();
+            // var to store the primary key
+            Int32 PrimaryKey = 0;
+            // set its properties
+            TestItem.IsWorking = true;
+            TestItem.FullName = "Natasha Longboy";
+            TestItem.HourlyWage = 7.5;
+            TestItem.PhoneNumber = "07759188504";
+            TestItem.DateOfBirth = Convert.ToDateTime("09 / 03 / 1986");
+            //set this staff to test data
+            AllStaff.ThisStaff = TestItem;
+            // add the record
+            PrimaryKey = AllStaff.Add();
+            // set the primary key of the test data
+            TestItem.StaffId = PrimaryKey;
+            // find the record
+            AllStaff.ThisStaff.Find(PrimaryKey);
+            // delete the record
+            AllStaff.Delete();
+            // try to find the record
+            Boolean Found = AllStaff.ThisStaff.Find(PrimaryKey);
+            // test to see that the record was not found
+            Assert.IsFalse(Found);
+        }
+        [TestMethod]
+        public void ReportByFullNameMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            FilteredStaff.ReportByFullName("");
+            Assert.AreEqual(AllStaff.Count, FilteredStaff.Count);
+        }
+        [TestMethod]
+        public void ReportByFullNameNoneFound()
+        {
+            // create an instance of the filtered data
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            FilteredStaff.ReportByFullName("XXXX XXXXXX");
+            Assert.AreEqual(0, FilteredStaff.Count);
+        }
+        [TestMethod]
+        public void ReportByFullNameTestDataFound()
+        {
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            Boolean OK = true;
+            FilteredStaff.ReportByFullName("XXXX YYY");
+            if (FilteredStaff.Count == 2)
+            {
+               if (FilteredStaff.StaffList[0].StaffId != 54)
+                {
+                    OK = false;
+                }
+               if (FilteredStaff.StaffList[1].StaffId != 55)
+                {
+                    OK = false;
+                }
             }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
     }
 }

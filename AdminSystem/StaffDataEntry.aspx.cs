@@ -8,9 +8,34 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primary key with page level scope
+    Int32 StaffId1;
     protected void Page_Load(object sender, EventArgs e)
     {
+        //get the number of the staff to be processed
+        StaffId1 = Convert.ToInt32(Session["StaffId"]);
+        if(IsPostBack == false)
+        {
+            if (StaffId1 != 1)
+            {
+                DisplayAddress();
+            }
+        }
+    }
 
+    private void DisplayAddress()
+    {
+        //create an instance of the address book
+        clsStaffCollection StaffBook = new clsStaffCollection();
+        // find the record to update
+        StaffBook.ThisStaff.Find(StaffId1);
+        // display the data for this record
+        txtStaffId.Text = StaffBook.ThisStaff.StaffId.ToString();
+        txtFullName.Text = StaffBook.ThisStaff.FullName;
+        txtPhoneNumber.Text = StaffBook.ThisStaff.PhoneNumber;
+        TxtDateOfBirth.Text = StaffBook.ThisStaff.DateOfBirth.ToString();
+        txtHourlyWage.Text = StaffBook.ThisStaff.HourlyWage.ToString();
+        chkIsWorking.Checked = StaffBook.ThisStaff.IsWorking;
     }
 
     protected void BtnOk_Click(object sender, EventArgs e)
@@ -34,7 +59,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Error == " ")
         {
             // Capture Staff ID
-            AStaff.StaffId = Convert.ToInt32(txtStaffId.Text);
+            AStaff.StaffId = StaffId1;
             // Capture the full name
             AStaff.FullName = FullName;
             // Capture the phone number
@@ -45,11 +70,20 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AStaff.DateOfBirth = Convert.ToDateTime(DateOfBirth);
             // Capture the is working button
             AStaff.IsWorking = chkIsWorking.Checked;
+            //create a new instance of staff collection
             clsStaffCollection StaffList = new clsStaffCollection();
-            // set the ThisStaff property
-            StaffList.ThisStaff = AStaff;
-            //Store the data in the session object
-            StaffList.Add();
+            
+            // if this is a new record add the data
+            if(StaffId1 == -1)
+            {
+                StaffList.ThisStaff = AStaff;
+                StaffList.Add();
+            }
+            else
+            {
+                StaffList.ThisStaff = AStaff;
+                StaffList.Add();
+            }
             //Navigate user to page
             Response.Redirect("StaffList.aspx");
         }
