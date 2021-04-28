@@ -24,17 +24,17 @@ namespace ClassLibrary
 
         
         //dateAdded private member variable.
-        private DateTime mDataAdded;
+        private DateTime mDateAdded;
         //DateAdded public property.
         public DateTime DateAdded
         {
             get
             {
-                return mDataAdded;
+                return mDateAdded;
             }
             set
             {
-                mDataAdded = value;
+                mDateAdded = value;
             }
         }
 
@@ -149,18 +149,34 @@ namespace ClassLibrary
 
         public bool Find(Int32 ID)
         {
-            //set the private data members to the test data value.
-            mID = 1;
-            mDataAdded = Convert.ToDateTime("16/9/2015");
-            mTown = "test";
-            mDelivered = false;
-            mName = "patrick";
-            mContents = "contents";
-            mCustomerID = 2;
-            mTotal = 1.00;
-            mPayed = true;
-            //always return true.
-            return true;
+            //create an instanace of the data connection.
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the order ID to search for
+            DB.AddParameter("@ID", ID);
+            //execute the stored procedure.
+            DB.Execute("sproc_tblAddress_FilterByAddressNo");
+            //if one record is found
+            if (DB.Count == 1)
+            {
+                //set the private data members to the test data value.
+                mID = Convert.ToInt32(DB.DataTable.Rows[0]["ID"]);
+                mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateAdded"]);
+                mTown = Convert.ToString(DB.DataTable.Rows[0]["Town"]);
+                mDelivered = Convert.ToBoolean(DB.DataTable.Rows[0]["Delivered"]);
+                mName = Convert.ToString(DB.DataTable.Rows[0]["Name"]);
+                mContents = Convert.ToString(DB.DataTable.Rows[0]["Contents"]);
+                mCustomerID = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerID"]);
+                mTotal = Convert.ToDouble(DB.DataTable.Rows[0]["Total"]);
+                mPayed = Convert.ToBoolean(DB.DataTable.Rows[0]["Payed"]);
+                //return that everything worked.
+                return true;
+            }
+            //if no record was found.
+            else
+            {
+                //return flace indicating a problem.
+                return false;
+            }
         }
     }
 }

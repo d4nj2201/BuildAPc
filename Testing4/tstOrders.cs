@@ -262,7 +262,7 @@ namespace TestingOrders
             Boolean OK = true;
             Int32 ID = 1;
             Found = AnOrder.Find(ID);
-            if (AnOrder.Payed != true)
+            if (AnOrder.Payed != Convert.ToBoolean(true))
             {
                 OK = false;
             }
