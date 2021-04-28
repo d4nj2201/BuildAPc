@@ -44,4 +44,24 @@ public partial class _1_DataEntry : System.Web.UI.Page
         
         
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        clsOrder AnOrder = new clsOrder();
+        Int32 ID;
+        Boolean Found = false;
+        ID = Convert.ToInt32(txtOrderID.Text);
+        Found = AnOrder.Find(ID);
+        if (Found == true)
+        {
+            //display the vlaues of the properties in the form.
+            txtOrderID.Text = Convert.ToString(AnOrder.ID);
+            txtAddress.Text = AnOrder.Town;
+            txtCustomerID.Text = Convert.ToString(AnOrder.CustomerID);
+            txtDataAdded.Text = Convert.ToString(AnOrder.DateAdded);
+            txtFullName.Text = AnOrder.Name;
+            txtTotal.Text = Convert.ToString(AnOrder.Total);
+
+        }
+    }
 }
