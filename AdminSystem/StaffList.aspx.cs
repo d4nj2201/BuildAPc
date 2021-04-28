@@ -23,9 +23,11 @@ public partial class _1_List : System.Web.UI.Page
         clsStaffCollection Staff = new clsStaffCollection();
         // set the data source to list of staff in collection
         lstStaffList.DataSource = Staff.StaffList;
-        //
+        // set name of primary key
         lstStaffList.DataValueField = "StaffId";
+        // set the data field to display
         lstStaffList.DataTextField = "FullName";
+        // bind the data to the list
         lstStaffList.DataBind();
     }
 
@@ -40,5 +42,59 @@ public partial class _1_List : System.Web.UI.Page
         Session["StaffId"] = -1;
         // redirect to the data entry page
         Response.Redirect("StaffDataEntry.aspx");
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Int32 StaffId;
+        if (lstStaffList.SelectedIndex != 1)
+        {
+            StaffId = Convert.ToInt32(lstStaffList.SelectedIndex);
+            Session["StaffId"] = StaffId;
+            Response.Redirect("AStaff.aspx");
+        }
+        else
+        {
+            lblError.Text = "Please select a record to delete from the list";
+        }
+    }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        // var to store prim key
+        Int32 StaffId;
+
+        if (lstStaffList.SelectedIndex != -1)
+        {
+            StaffId = Convert.ToInt32(lstStaffList.SelectedValue);
+            Session["StaffId"] = StaffId;
+            Response.Redirect("DeleteStaff.aspx");
+        }
+        else
+        {
+            lblError.Text = "please select a record to delete";
+        }
+    }
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        clsStaffCollection Staff = new clsStaffCollection();
+        Staff.ReportByFullName("");
+        txtFilter.Text = "";
+        lstStaffList.DataSource = Staff.StaffList;
+        lstStaffList.DataValueField = "StaffId";
+        lstStaffList.DataTextField = "FullName";
+        lstStaffList.DataBind();
+
+    }
+
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        clsStaffCollection Staff = new clsStaffCollection();
+        Staff.ReportByFullName(txtFilter.Text);
+        lstStaffList.DataSource = Staff.StaffList;
+        lstStaffList.DataValueField = "StaffId";
+        lstStaffList.DataTextField = "PostCode";
+        lstStaffList.DataBind();
     }
 }

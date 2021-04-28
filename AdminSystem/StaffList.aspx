@@ -12,6 +12,18 @@
             <asp:ListBox ID="lstStaffList" runat="server" Height="198px" OnSelectedIndexChanged="lstStaffList_SelectedIndexChanged" style="margin-top: 0px" Width="240px" AutoPostBack="True"></asp:ListBox>
         </div>
         <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" />
+        <asp:Button ID="btnEdit" runat="server" OnClick="Button1_Click" Text="Edit" />
+        <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" />
+        <br />
+        <br />
+        Enter a Name<asp:TextBox ID="txtFilter" runat="server"></asp:TextBox>
+        <br />
+        <asp:Button ID="btnApply" runat="server" OnClick="btnApply_Click" Text="Apply" />
+        <asp:Button ID="btnClear" runat="server" OnClick="Button2_Click" Text="Clear" />
+        <br />
+        <asp:Label ID="lblError" runat="server" Text="Error"></asp:Label>
+        <br />
+        <br />
     </form>
 </body>
 </html>
