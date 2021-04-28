@@ -15,9 +15,14 @@ public partial class _1Viewer : System.Web.UI.Page
         //get the data from the session object.
         AnOrder = (clsOrder)Session["AnName"];
         AnOrder = (clsOrder)Session["AnID"];
+        AnOrder = (clsOrder)Session["AnAddress"];
+        AnOrder = (clsOrder)Session["AnCustomerID"];
+        AnOrder = (clsOrder)Session["AnDate"];
         //display the full name for this entry
         Response.Write(AnOrder.Name);
         Response.Write(AnOrder.ID);
         Response.Write(AnOrder.Town);
+        Response.Write(AnOrder.CustomerID);
+        Response.Write(AnOrder.DateAdded);
     }
 }

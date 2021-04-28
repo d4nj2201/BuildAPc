@@ -24,7 +24,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Session["AnName"] = AnOrder;
 
         //capture the order ID
-        AnOrder.ID = txtOrderID.Text;
+        AnOrder.ID = Convert.ToInt32(txtOrderID.Text);
         Session["AnID"] = AnOrder;
         //Navigate to the view page.
 
@@ -32,6 +32,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
         AnOrder.Town = txtAddress.Text;
         Session["AnAddress"] = AnOrder;
 
+        //capture the customer ID
+        AnOrder.CustomerID = Convert.ToInt32(txtCustomerID.Text);
+        Session["AnCustomerID"] = AnOrder;
+
+        AnOrder.DateAdded = Convert.ToDateTime(txtDataAdded.Text);
+        Session["AnDate"] = AnOrder;
 
         Response.Redirect("Orders.aspx");
 
