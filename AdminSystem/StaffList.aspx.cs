@@ -49,9 +49,9 @@ public partial class _1_List : System.Web.UI.Page
         Int32 StaffId;
         if (lstStaffList.SelectedIndex != 1)
         {
-            StaffId = Convert.ToInt32(lstStaffList.SelectedIndex);
+            StaffId = Convert.ToInt32(lstStaffList.SelectedValue);
             Session["StaffId"] = StaffId;
-            Response.Redirect("AStaff.aspx");
+            Response.Redirect("StaffDataEntry.aspx");
         }
         else
         {
@@ -94,7 +94,7 @@ public partial class _1_List : System.Web.UI.Page
         Staff.ReportByFullName(txtFilter.Text);
         lstStaffList.DataSource = Staff.StaffList;
         lstStaffList.DataValueField = "StaffId";
-        lstStaffList.DataTextField = "PostCode";
+        lstStaffList.DataTextField = "FullName";
         lstStaffList.DataBind();
     }
 }

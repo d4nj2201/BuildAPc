@@ -81,8 +81,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
             }
             else
             {
+                StaffList.ThisStaff.Find(StaffId1);
                 StaffList.ThisStaff = AStaff;
-                StaffList.Add();
+                StaffList.Update();
             }
             //Navigate user to page
             Response.Redirect("StaffList.aspx");

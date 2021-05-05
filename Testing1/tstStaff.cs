@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Testing1
 {
     [TestClass]
-    public class tstStaff
+    public class TstStaff
     {
 
 
@@ -646,11 +646,11 @@ namespace Testing1
             FilteredStaff.ReportByFullName("XXXX YYY");
             if (FilteredStaff.Count == 2)
             {
-               if (FilteredStaff.StaffList[0].StaffId != 54)
+               if (FilteredStaff.StaffList[0].StaffId != 2)
                 {
                     OK = false;
                 }
-               if (FilteredStaff.StaffList[1].StaffId != 55)
+               if (FilteredStaff.StaffList[1].StaffId != 3)
                 {
                     OK = false;
                 }

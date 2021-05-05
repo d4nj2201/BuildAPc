@@ -19,6 +19,7 @@ public partial class DeleteStaff : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         clsStaffCollection StaffBook = new clsStaffCollection();
+        StaffBook.ThisStaff.Find(StaffId);
         StaffBook.Delete();
         Response.Redirect("StaffList.aspx");
     }
