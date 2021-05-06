@@ -93,5 +93,12 @@ namespace Test_Framework
             Assert.AreEqual(AllOrders.Count, TestList.Count);
         }
 
+        [TestMethod]
+        public void TwoRecordsPresent()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            Assert.AreEqual(AllOrders.Count, 2);
+        }
+
     }
 }
