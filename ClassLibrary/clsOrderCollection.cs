@@ -4,7 +4,7 @@ using ClassLibrary;
 
 namespace TestingOrders
 {
-    class clsOrderCollection
+     class clsOrderCollection
     {
         //private data member for the list.
         List<clsOrder> mOrderList = new List<clsOrder>();
