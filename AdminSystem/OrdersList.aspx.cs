@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ClassLibrary;
+using TestingOrders;
 
 public partial class _1_List : System.Web.UI.Page
 {
@@ -28,5 +29,13 @@ public partial class _1_List : System.Web.UI.Page
         lstOrderList.DataTextField = "Contents";
         lstOrderList.DataBind();
 
+    }
+
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        //store -1 into the session object to indicate this is a new reocrd.
+        Session["ID"] = -1;
+        //redirect to the data entry page.
+        Response.Redirect("AnOrder.aspx");
     }
 }

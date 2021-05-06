@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ClassLibrary;
+using TestingOrders;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
@@ -17,29 +18,36 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //Create a new instance of clsOrder
         clsOrder AnOrder = new clsOrder();
+        //capture the order ID etc...
+        string ID = txtOrderID.Text;
+        string CustomerID = txtCustomerID.Text;
+        string Town = txtAddress.Text;
+        string Name = txtFullName.Text;
+        string DateAdded = txtDataAdded.Text;
+        string Total = txtTotal.Text;
+        //variable to store error msgs
+        string Error = "";
+        //validate the data.
+        Error = AnOrder.Valid(ID, CustomerID, Town, Name, DateAdded, Total);
+        if (Error == "")
+        {
+            AnOrder.ID = Convert.ToInt32(ID);
+            AnOrder.CustomerID = Convert.ToInt32(CustomerID);
+            AnOrder.Total = Convert.ToDouble(Total);
+            AnOrder.Total = Convert.ToInt32(Total);
+            AnOrder.Name = Name;
+            AnOrder.DateAdded = Convert.ToDateTime(DateAdded);
+            AnOrder.Delivered = chkDelivered.Checked;
+            AnOrder.Payed = chkPayed.Checked;
+            clsOrderCollection OrderList = new clsOrderCollection();
+            OrderList.ThisOrder = AnOrder;
+            OrderList.Add();
+            Response.Redirect("OrderList.aspx");
 
-        //capture the full name
-        AnOrder.Name = txtFullName.Text;
-        //store the name in the session object.
-        Session["AnName"] = AnOrder;
-
-        //capture the order ID
-        AnOrder.ID = Convert.ToInt32(txtOrderID.Text);
-        Session["AnID"] = AnOrder;
-        //Navigate to the view page.
-
-        //capture the address
-        AnOrder.Town = txtAddress.Text;
-        Session["AnAddress"] = AnOrder;
-
-        //capture the customer ID
-        AnOrder.CustomerID = Convert.ToInt32(txtCustomerID.Text);
-        Session["AnCustomerID"] = AnOrder;
-
-        AnOrder.DateAdded = Convert.ToDateTime(txtDataAdded.Text);
-        Session["AnDate"] = AnOrder;
-
-        Response.Redirect("Orders.aspx");
+        } else
+        {
+            lblError.Text = Error;
+        }
 
         
         
