@@ -111,5 +111,16 @@ namespace TestingOrders
             //execute the stored procedure
             DB.Execute("sproc_tblOrder_Update");
         }
+
+        public void Delete()
+        {
+            //deletes the record pointed to by thisOrder.
+            //connect to the database.
+            clsDataConnection DB = new clsDataConnection();
+            //set the paramters for the stored procedure.
+            DB.AddParameter("@ID", mThisOrder.ID);
+            //execute the stored procedure.
+            DB.Execute("sproc_tblOrder_Delete");
+        }
     }
 }

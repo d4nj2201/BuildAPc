@@ -30,9 +30,8 @@ public partial class _1_List : System.Web.UI.Page
         clsOrderCollection Orders = new clsOrderCollection();
         lstOrderList.DataSource = Orders.OrderList;
         lstOrderList.DataValueField = "ID";
-        lstOrderList.DataTextField = "Contents";
+        lstOrderList.DataTextField = "Town";
         lstOrderList.DataBind();
-
     }
 
    
@@ -62,6 +61,26 @@ public partial class _1_List : System.Web.UI.Page
         {
             //display an error.
             lblError.Text = "Please select a record to delete from the list";
+        }
+    }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        //var to store the primary key value of the record to be deleted.
+        Int32 ID;
+        //if a reocrd has been selected from the list.
+        if (lstOrderList.SelectedIndex != -1)
+        {
+            //get the primary key value of the record to delete.
+            ID = Convert.ToInt32(lstOrderList.SelectedValue);
+            //store the data in the session object.
+            Session["ID"] = ID;
+            //redirect to the delete page.
+            Response.Redirect("DeleteOrder.aspx");
+        } else //if no record has been selected.
+        {
+            //display an erorr.
+            lblError.Text = "Please select a record to delete from the list.";
         }
     }
 }
