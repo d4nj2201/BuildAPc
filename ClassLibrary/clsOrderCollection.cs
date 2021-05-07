@@ -4,8 +4,12 @@ using ClassLibrary;
 
 namespace TestingOrders
 {
-     public class clsOrderCollection
+    public class clsOrderCollection
     {
+        //object for data connection.
+        clsDataConnection DB = new clsDataConnection();
+        DB.Execute("sproc_tblOrder_SelectAll");
+        PopulateArray(DB);
         //private data member for the list.
         List<clsOrder> mOrderList = new List<clsOrder>();
         //private data member for thisOrder.
@@ -22,7 +26,7 @@ namespace TestingOrders
             }
         }
 
-        
+
         public int Count
         {
             get
@@ -121,6 +125,43 @@ namespace TestingOrders
             DB.AddParameter("@ID", mThisOrder.ID);
             //execute the stored procedure.
             DB.Execute("sproc_tblOrder_Delete");
+        }
+
+        public void ReportByName(string Name)
+        {
+            //filters the records based on a full or partial Name.
+            //connect to the database.
+            clsDataConnection DB = new clsDataConnection();
+            //send the Name parameter to the database.
+            DB.AddParameter("@Name", Name);
+            //execute the stored procedure.
+            DB.Execute("sproc_tblOrder_FilteredByName");
+            PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            //populates the array list based on the data table in the parameter DB.
+            Int32 Index = 0;
+            Int32 RecordCount = 0;
+            clsDataConnection DB = new clsDataConnection();
+            DB.Execute("sproc_tblOrder_SelectAll");
+            RecordCount = DB.Count;
+            while (Index < RecordCount)
+            {
+                clsOrder AnOrder = new clsOrder();
+                AnOrder.Delivered = Convert.ToBoolean(DB.DataTable.Rows[Index]["Delivered"]);
+                AnOrder.CustomerID = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerID"]);
+                AnOrder.DateAdded = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateAdded"]);
+                AnOrder.Contents = Convert.ToString(DB.DataTable.Rows[Index]["Contents"]);
+                AnOrder.ID = Convert.ToInt32(DB.DataTable.Rows[Index]["ID"]);
+                AnOrder.Name = Convert.ToString(DB.DataTable.Rows[Index]["Name"]);
+                AnOrder.Payed = Convert.ToBoolean(DB.DataTable.Rows[Index]["Payed"]);
+                AnOrder.Total = Convert.ToDouble(DB.DataTable.Rows[Index]["Total"]);
+                AnOrder.Town = Convert.ToString(DB.DataTable.Rows[Index]["Town"]);
+                mOrderList.Add(AnOrder);
+                Index++;
+            }
         }
     }
 }

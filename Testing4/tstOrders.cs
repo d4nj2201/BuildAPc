@@ -43,7 +43,7 @@ namespace TestingOrders
             Assert.AreEqual(AnOrder.DateAdded, TestData);
         }
 
-      
+
         [TestMethod]
         public void AddressPropertyOK()
         {
@@ -141,7 +141,8 @@ namespace TestingOrders
             //invoke the method.
             Found = AnOrder.Find(ID);
             //check the Total
-            if (AnOrder.ID != 1){
+            if (AnOrder.ID != 1)
+            {
                 OK = false;
             }
             //test to see that the result is correct.
@@ -378,6 +379,61 @@ namespace TestingOrders
             Boolean Found = AllOrders.ThisOrder.Find(PrimaryKey);
             //test to see that the record was not found.
             Assert.IsFalse(Found);
+        }
+
+        [TestMethod]
+        public void ReportByNameMethodOK()
+        {
+            //create an instance of the class containing unfiltered results.
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            //create an instance of the filtered data.
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            //apply a blank string (should return all records).
+            FilteredOrders.ReportByName("");
+            //test to see that the two values are equal.
+            Assert.AreEqual(AllOrders.Count, FilteredOrders.Count);
+        }
+
+        [TestMethod]
+        public void ReportByNameNoneFound()
+        {
+            //create an instance of the filtered data.
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            //apply a Name that doesn't exist.
+            FilteredOrders.ReportByName("randomName");
+            //test to see that there are no records.
+            Assert.AreEqual(0, FilteredOrders.Count);
+        }
+
+        [TestMethod]
+        public void ReportByNameTestDataFound()
+        {
+            //create an instance of the filtered data.
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            //var to store the outcome.
+            Boolean OK = true;
+            //apply a name that doens't exist.
+            FilteredOrders.ReportByName("noname");
+            //check that the correct number of records are found.
+            if (FilteredOrders.Count == 2)
+            {
+                //check that the first record is ID 36
+                if (FilteredOrders.OrderList[0].ID != 36)
+                {
+                    OK = false;
+                }
+                //check that the first record is ID 37
+                if (FilteredOrders.OrderList[1].ID != 37)
+                {
+                    OK = false;
+                }
+                else
+                {
+                    OK = false;
+                }
+                //test to see that there are no records.
+                Assert.IsTrue(OK);
+            }
         }
     }
 }
