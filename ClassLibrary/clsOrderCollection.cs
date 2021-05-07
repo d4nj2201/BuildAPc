@@ -92,5 +92,24 @@ namespace TestingOrders
             //execute the query returning the primary key value (PK).
             return DB.Execute("sproc_tblOrder_Insert");
         }
+
+        public void Update()
+        {
+            //update an existing record based on the values of thisOrder.
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the paramters for the stored procedure.
+            DB.AddParameter("@ID", mThisOrder.ID);
+            DB.AddParameter("@Contents", mThisOrder.Contents);
+            DB.AddParameter("@Delivered", mThisOrder.Delivered);
+            DB.AddParameter("@CustomerID", mThisOrder.CustomerID);
+            DB.AddParameter("@DateAdded", mThisOrder.DateAdded);
+            DB.AddParameter("@Name", mThisOrder.Name);
+            DB.AddParameter("@Payed", mThisOrder.Payed);
+            DB.AddParameter("@Total", mThisOrder.Total);
+            DB.AddParameter("@Town", mThisOrder.Town);
+            //execute the stored procedure
+            DB.Execute("sproc_tblOrder_Update");
+        }
     }
 }

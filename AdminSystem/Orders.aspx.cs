@@ -5,9 +5,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ClassLibrary;
+using TestingOrders;
 
 public partial class _1Viewer : System.Web.UI.Page
 {
+    
     protected void Page_Load(object sender, EventArgs e)
     {
         //Createa  new instance of clsOrder
@@ -24,5 +26,9 @@ public partial class _1Viewer : System.Web.UI.Page
         Response.Write(AnOrder.Town);
         Response.Write(AnOrder.CustomerID);
         Response.Write(AnOrder.DateAdded);
+
+     
     }
+
+
 }

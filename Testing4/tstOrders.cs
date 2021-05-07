@@ -298,7 +298,51 @@ namespace TestingOrders
             AllOrders.ThisOrder.Find(PrimaryKey);
             //test to see that the two values are the same.
             Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+        }
 
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            //create an instance of the class.
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            //create the item of test data.
+            clsOrder TestItem = new clsOrder();
+            //PK var
+            Int32 PrimaryKey = 0;
+            //set its properties.
+            TestItem.Contents = "some contents";
+            TestItem.CustomerID = 123;
+            TestItem.DateAdded = DateTime.Now.Date;
+            TestItem.Delivered = true;
+            TestItem.ID = 123;
+            TestItem.Name = "Patrick";
+            TestItem.Payed = true;
+            TestItem.Total = 1.00;
+            TestItem.Town = "Leicester";
+            //set thisOrder to the test data.
+            AllOrders.ThisOrder = TestItem;
+            //add the record
+            PrimaryKey = AllOrders.Add();
+            //set the primary key of the test data.
+            TestItem.ID = PrimaryKey;
+            //modify the test data.
+            TestItem.Contents = "not some contents";
+            TestItem.CustomerID = 1234;
+            TestItem.DateAdded = DateTime.Now.Date;
+            TestItem.Delivered = false;
+            TestItem.ID = 1234;
+            TestItem.Name = "Not Patrick";
+            TestItem.Payed = false;
+            TestItem.Total = 2.00;
+            TestItem.Town = "Not Leicester";
+            //set the record based on the new test data.
+            AllOrders.ThisOrder = TestItem;
+            //update the record.
+            AllOrders.Update();
+            //find the record.
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            //test to see thisOrder matches the test data.
+            Assert.AreEqual(AllOrders.ThisOrder, TestItem);
         }
     }
 }
