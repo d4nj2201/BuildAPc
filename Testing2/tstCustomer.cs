@@ -493,5 +493,123 @@ namespace TestingCustomer
             Assert.AreNotEqual(Error, "");
 
         }
+
+        [TestMethod]
+        public void AddressMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            string Address = "";
+            //invoke the method
+            Error = ACustomer.Valid(Username, Password, Address, DateAdded);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AddressMin()
+        {
+            //create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string Address = "a";
+            //invoke the method
+            Error = ACustomer.Valid(Username, Password, Address, DateAdded);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AddressMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string Address = "aa";
+            //invoke the method
+            Error = ACustomer.Valid(Username, Password, Address, DateAdded);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AddressMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string Address = "";
+            Address = Address.PadRight(59, 'a');
+            //invoke the method
+            Error = ACustomer.Valid(Username, Password, Address, DateAdded);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AddressMax()
+        {
+            //create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string Address = "";
+            Address = Address.PadRight(60, 'a');
+            //invoke the method
+            Error = ACustomer.Valid(Username, Password, Address, DateAdded);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AddressMaxPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            string Address = "";
+            //invoke the method
+            Error = ACustomer.Valid(Username, Password, Address, DateAdded);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AddressMid()
+        {
+            //create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string Address = "";
+            Address = Address.PadRight(30, 'a');
+            //invoke the method
+            Error = ACustomer.Valid(Username, Password, Address, DateAdded);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+
+
+
+
+
+
+
+
+
     }
 }
