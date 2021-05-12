@@ -136,25 +136,58 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The username must be less than 10 characters : ";
             }
-            //copy the dateAdded value to the DateTemp variable
-            DateTemp = Convert.ToDateTime(dateAdded);
-            if (DateTemp < DateTime.Now.Date)
+            try
             {
-                //record the error
-                Error = Error + "The date cannot be in the past : ";
-               
-            }
-            //check to see if the date is greater than today's date
+                //copy the dateAdded value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(dateAdded);
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future";
 
-            if (DateTemp > DateTime.Now.Date)
+                }
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+
+            }
+            catch
             {
                 //record the error
-                Error = Error + "The date cannot be in the future : ";
+                Error = Error + "The date was not a valid date : ";
+            }
+
+            //is the post code blank
+            if (password.Length == 0)
+            {
+                //record the error
+                Error = Error + "The post code may not be blank : ";
+            }
+            //if the post code is too long
+            if (password.Length > 12)
+            {
+                //record the error
+                Error = Error + "The post code must be less than 12 characters : ";
+            }
+            //is the street blank
+            if (address.Length == 0)
+            {
+                //record the error
+                Error = Error + "The street may not be blank : ";
+            }
+            //if the street is too long
+            if (address.Length > 60)
+            {
+                //record the error
+                Error = Error + "The street must be less than 60 characters : ";
             }
             //return any error messages
-
             return Error;
         }
 
+
     }
+
 }
