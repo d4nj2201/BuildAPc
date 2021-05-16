@@ -15,17 +15,43 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
+        //create a new instance of clsCustomer
         clsCustomer ACustomer = new clsCustomer();
-      
-        ACustomer.CustomerId = Convert.ToInt16(txtCustomerId.Text);
-        ACustomer.Username = txtUsername.Text;
-        ACustomer.Password = txtPassword.Text;
-        ACustomer.Address = txtAddress.Text;
-        ACustomer.DateAdded = Convert.ToDateTime(txtDateAdded.Text);
-        ACustomer.Active = Convert.ToBoolean(chkActive.Checked);
-        Session["ACustomer"] = ACustomer;
-        //navigate to the viewer page
-        Response.Redirect("CustomerViewer.aspx");
+        //capture the username
+        string Username = txtUsername.Text;
+        //capture the password
+        string Password = txtPassword.Text;
+        //capture the address
+        string Address = txtAddress.Text;
+        //capture the date added
+        string DateAdded = txtDateAdded.Text;
+        //variable to store any error messages
+        string Error = "";
+        //validate the data
+        Error = ACustomer.Valid(Username, Password, Address, DateAdded);
+        if (Error == "")
+        {
+           // ACustomer.CustomerId = Convert.ToInt16(txtCustomerId.Text);
+            //capture the username
+            ACustomer.Username = txtUsername.Text;
+            //capture the password
+            ACustomer.Password = txtPassword.Text;
+            //capture the address
+            ACustomer.Address = txtAddress.Text;
+            //capture the date added
+            ACustomer.DateAdded = Convert.ToDateTime(txtDateAdded.Text);
+            //capture whether active or not
+            ACustomer.Active = Convert.ToBoolean(chkActive.Checked);
+            //store the address in the session object
+            Session["ACustomer"] = ACustomer;
+            //redirect to the viewer page
+            Response.Write("CustomerViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
