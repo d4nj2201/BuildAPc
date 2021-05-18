@@ -42,28 +42,36 @@ namespace ClassLibrary
         //constructor for the class
         public clsCustomerCollection()
         {
-            //create the items of test data
-            clsCustomer TestItem = new clsCustomer();
-            //set its properties
-            TestItem.Active = true;
-            TestItem.CustomerId = 1;
-            TestItem.Username = "username";
-            TestItem.Password = "password";
-            TestItem.Address = "some address";
-            TestItem.DateAdded = DateTime.Now.Date;
-            //add the item to the test list
-            mCustomerList.Add(TestItem);
-            //reinitialise the object for some new data
-            TestItem = new clsCustomer();
-            //set its properties
-            TestItem.Active = true;
-            TestItem.CustomerId = 2;
-            TestItem.Username = "username2";
-            TestItem.Password = "password2";
-            TestItem.Address = "some address2";
-            TestItem.DateAdded = DateTime.Now.Date;
-            //add the item to the test list
-            mCustomerList.Add(TestItem);
+            //var for the index
+            Int32 Index = 0;
+            //var to store the record count
+            Int32 RecordCount = 0;
+            //object for data connection
+            clsDataConnection DB = new clsDataConnection();
+            //execute ths stored procedure
+            DB.Execute("sproc_tblCustomer_SelectAll");
+            //get the count of records
+            RecordCount = DB.Count;
+            //while there are records to process
+            while (Index < RecordCount)
+            {
+                //create a blank customer
+                clsCustomer ACustomer = new clsCustomer();
+                //read in the fields from the current record
+                ACustomer.Active = Convert.ToBoolean(DB.DataTable.Rows[Index]["Active"]);
+                ACustomer.CustomerId = Convert.ToInt16(DB.DataTable.Rows[Index]["CustomerId"]);
+                ACustomer.Username = Convert.ToString(DB.DataTable.Rows[Index]["Username"]);
+                ACustomer.Password = Convert.ToString(DB.DataTable.Rows[Index]["Password"]);
+                ACustomer.Address = Convert.ToString(DB.DataTable.Rows[Index]["Address"]);
+                ACustomer.DateAdded = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateAdded"]);
+                //add the record to the private data mamber
+                mCustomerList.Add(ACustomer);
+                //point at the next record
+                Index++;
+
+
+
+            }
         }
 
     }
