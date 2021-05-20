@@ -80,7 +80,7 @@ namespace TestingCustomer
         {
             clsCustomer ACustomer = new clsCustomer();
             Boolean Found = false;
-            Int16 CustomerId = 1;
+            Int32 CustomerId = 1;
             Found = ACustomer.Find(CustomerId);
             Assert.IsTrue(Found);
         }

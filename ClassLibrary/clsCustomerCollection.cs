@@ -36,12 +36,33 @@ namespace ClassLibrary
             }
         }
 
-        public clsCustomer ThisCustomer { get; set; }
+        //public property for This Customer
+        public clsCustomer ThisCustomer
+        {
+            get
+            {
+                //return the private data
+                return mThisCustomer;
+
+            }
+            set
+            {
+                //set the private data
+                mThisCustomer = value;
+            }
+        }
+
+        public clsCustomer mThisCustomer { get; private set; }
 
 
         //constructor for the class
         public clsCustomerCollection()
         {
+
+            //private data member for the list
+            List<clsCustomer> mCustomerList = new List<clsCustomer>();
+            //private data member thisCustomer
+            clsCustomer mThisCustomer = new clsCustomer();
             //var for the index
             Int32 Index = 0;
             //var to store the record count
@@ -68,11 +89,23 @@ namespace ClassLibrary
                 mCustomerList.Add(ACustomer);
                 //point at the next record
                 Index++;
-
-
-
             }
         }
 
+        public int Add()
+        {
+            //adds a new record to the database based on the values of mThisCustomer
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@Username", mThisCustomer.Username);
+            DB.AddParameter("@Password", mThisCustomer.Password);
+            DB.AddParameter("@DateAdded", mThisCustomer.DateAdded);
+            DB.AddParameter("@Address", mThisCustomer.Address);
+            DB.AddParameter("@Active", mThisCustomer.Active);
+            //execute the query returning the primary key value
+            return DB.Execute("sproc_tblCustomer_Insert");
+        }
     }
 }
+
