@@ -33,19 +33,24 @@ public partial class _1_DataEntry : System.Web.UI.Page
         {
            // ACustomer.CustomerId = Convert.ToInt16(txtCustomerId.Text);
             //capture the username
-            ACustomer.Username = txtUsername.Text;
+            ACustomer.Username = Username;
             //capture the password
-            ACustomer.Password = txtPassword.Text;
+            ACustomer.Password = Password;
             //capture the address
-            ACustomer.Address = txtAddress.Text;
+            ACustomer.Address = Address;
             //capture the date added
-            ACustomer.DateAdded = Convert.ToDateTime(txtDateAdded.Text);
+            ACustomer.DateAdded = Convert.ToDateTime(DateAdded);
             //capture whether active or not
-            ACustomer.Active = Convert.ToBoolean(chkActive.Checked);
-            //store the address in the session object
-            Session["ACustomer"] = ACustomer;
-            //redirect to the viewer page
-            Response.Write("CustomerViewer.aspx");
+            ACustomer.Active = chkActive.Checked;
+            //create a new instance of the customer collection
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+            //set the ThisCustomer property
+            CustomerList.ThisCustomer = ACustomer;
+            //add the new record
+            CustomerList.Add();
+            //redirect back to the listpage
+            Response.Redirect("CustomerList.aspx");
+
         }
         else
         {
@@ -76,6 +81,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtDateAdded.Text = ACustomer.DateAdded.ToString();
             
         }
+
+    }
+
+    protected void txtCustomerId_TextChanged(object sender, EventArgs e)
+    {
 
     }
 }

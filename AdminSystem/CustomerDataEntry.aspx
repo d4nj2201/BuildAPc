@@ -19,7 +19,7 @@
             <asp:Label ID="lblPassword" runat="server" style="z-index: 1; left: 40px; top: 94px; position: absolute; height: 19px" Text="Password" width="71px"></asp:Label>
             <asp:Label ID="lblAddress" runat="server" height="19px" style="z-index: 1; left: 40px; top: 130px; position: absolute" Text="Address" width="71px"></asp:Label>
             <asp:Label ID="lblDateAdded" runat="server" style="z-index: 1; left: 40px; top: 166px; position: absolute" Text="DateAdded"></asp:Label>
-            <asp:TextBox ID="txtCustomerId" runat="server" style="z-index: 1; left: 133px; top: 32px; position: absolute; margin-top: 0px"></asp:TextBox>
+            <asp:TextBox ID="txtCustomerId" runat="server" style="z-index: 1; left: 133px; top: 32px; position: absolute; margin-top: 0px" OnTextChanged="txtCustomerId_TextChanged"></asp:TextBox>
             <asp:TextBox ID="txtUsername" runat="server" height="22px" style="z-index: 1; left: 129px; top: 67px; position: absolute" width="128px"></asp:TextBox>
             <asp:TextBox ID="txtPassword" runat="server" height="22px" style="z-index: 1; left: 129px; top: 100px; position: absolute" width="128px"></asp:TextBox>
             <asp:TextBox ID="txtAddress" runat="server" height="22px" style="z-index: 1; left: 129px; top: 135px; position: absolute" width="128px"></asp:TextBox>
