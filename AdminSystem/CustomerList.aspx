@@ -18,7 +18,8 @@
     <form id="form1" runat="server">
         <div>
         </div>
-        <asp:ListBox ID="lstCustomerList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="lstCustomerList_SelectedIndexChanged" style="z-index: 1; left: 11px; top: 34px; position: absolute; height: 263px; width: 374px"></asp:ListBox>
+        <asp:ListBox ID="lstCustomerList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="lstCustomerList_SelectedIndexChanged" style="z-index: 1; left: 28px; top: 29px; position: absolute; height: 263px; width: 374px; bottom: 218px;"></asp:ListBox>
+        <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" style="z-index: 1; left: 26px; top: 299px; position: absolute" Text="Add" />
     </form>
 </body>
 </html>
