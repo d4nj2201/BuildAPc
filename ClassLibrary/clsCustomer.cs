@@ -4,8 +4,8 @@ namespace ClassLibrary
 {
     public class clsCustomer
     {
-        private Int16 mCustomerId;
-        public Int16 CustomerId
+        private Int32 mCustomerId;
+        public Int32 CustomerId
         {
             get
             {
