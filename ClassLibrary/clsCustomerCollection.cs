@@ -8,6 +8,8 @@ namespace ClassLibrary
 
         //private data member for the list
         List<clsCustomer> mCustomerList = new List<clsCustomer>();
+        //int mCount;
+        clsCustomer mThisCustomer = new clsCustomer();
         //public property for the customer list
         public List<clsCustomer> CustomerList
         {
@@ -52,7 +54,7 @@ namespace ClassLibrary
             }
         }
 
-        public clsCustomer mThisCustomer { get; private set; }
+       // public clsCustomer mThisCustomer { get; private set; }
 
 
         //constructor for the class
@@ -121,6 +123,18 @@ namespace ClassLibrary
             DB.AddParameter("@Active", mThisCustomer.Active);
             //execute the stored procedure
             DB.Execute("sproc_tblCustomer_Update");
+        }
+
+        public void Delete()
+        {
+            //deletes the record pointed to by thisCustomer
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@CustomerId", mThisCustomer.CustomerId);
+            //execute the stored procedure
+            DB.Execute("sproc_tblCustomer_Delete");
+
         }
     }
 }

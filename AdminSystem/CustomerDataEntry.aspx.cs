@@ -29,7 +29,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         
     }
 
-    private void DisplayCustomer()
+    void DisplayCustomer()
     {
         //create an instance of the customer book
         clsCustomerCollection CustomerBook = new clsCustomerCollection();
@@ -37,9 +37,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
         CustomerBook.ThisCustomer.Find(CustomerId);
         //display the data for this record
         txtCustomerId.Text = CustomerBook.ThisCustomer.CustomerId.ToString();
-        txtUsername.Text = CustomerBook.ThisCustomer.Username.ToString();
-        txtPassword.Text = CustomerBook.ThisCustomer.Password.ToString();
-        txtAddress.Text = CustomerBook.ThisCustomer.Address.ToString();
+        txtUsername.Text = CustomerBook.ThisCustomer.Username;
+        txtPassword.Text = CustomerBook.ThisCustomer.Password;
+        txtAddress.Text = CustomerBook.ThisCustomer.Address;
         txtDateAdded.Text = CustomerBook.ThisCustomer.DateAdded.ToString();
         chkActive.Checked = CustomerBook.ThisCustomer.Active;
 
