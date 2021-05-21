@@ -233,8 +233,8 @@ namespace TestingCustomer
                 {
                     OK = false;
                 }
-                //check that the second record is 2
-                if (FilteredCustomers.CustomerList[1].CustomerId != 2)
+                //check that the second record is 3
+                if (FilteredCustomers.CustomerList[1].CustomerId != 3)
                 {
                     OK = false;
                 }
