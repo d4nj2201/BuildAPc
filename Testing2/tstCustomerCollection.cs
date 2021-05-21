@@ -224,7 +224,7 @@ namespace TestingCustomer
             //var to store outcome
             Boolean OK = true;
             //apply a username that doesn't exist
-            FilteredCustomers.ReportByUsername("yyyyyyy");
+            FilteredCustomers.ReportByUsername("yyyyyyyy");
             //check that the correct number of records are found
             if (FilteredCustomers.Count == 2)
             {
@@ -233,7 +233,7 @@ namespace TestingCustomer
                 {
                     OK = false;
                 }
-                //check that the first second is 2
+                //check that the second record is 2
                 if (FilteredCustomers.CustomerList[1].CustomerId != 2)
                 {
                     OK = false;
