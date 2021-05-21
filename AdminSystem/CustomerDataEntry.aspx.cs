@@ -8,8 +8,40 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primary key with page level scope
+    Int32 CustomerId;
+
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        //get the number of the customer to be processed
+        CustomerId = Convert.ToInt32(Session["CustomerId"]);
+        if (IsPostBack==false)
+        {
+            //if this is not a new record
+            if (CustomerId != -1)
+            {
+                //display the current data for the record
+                DisplayCustomer();
+            }
+        }
+
+        
+    }
+
+    private void DisplayCustomer()
+    {
+        //create an instance of the customer book
+        clsCustomerCollection CustomerBook = new clsCustomerCollection();
+        //find the record to update
+        CustomerBook.ThisCustomer.Find(CustomerId);
+        //display the data for this record
+        txtCustomerId.Text = CustomerBook.ThisCustomer.CustomerId.ToString();
+        txtUsername.Text = CustomerBook.ThisCustomer.Username.ToString();
+        txtPassword.Text = CustomerBook.ThisCustomer.Password.ToString();
+        txtAddress.Text = CustomerBook.ThisCustomer.Address.ToString();
+        txtDateAdded.Text = CustomerBook.ThisCustomer.DateAdded.ToString();
+        chkActive.Checked = CustomerBook.ThisCustomer.Active;
 
     }
 
@@ -31,7 +63,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = ACustomer.Valid(Username, Password, Address, DateAdded);
         if (Error == "")
         {
-           // ACustomer.CustomerId = Convert.ToInt16(txtCustomerId.Text);
+            // ACustomer.CustomerId = Convert.ToInt16(txtCustomerId.Text);
+            //capture the customerid
+            ACustomer.CustomerId = CustomerId;
             //capture the username
             ACustomer.Username = Username;
             //capture the password
@@ -44,10 +78,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
             ACustomer.Active = chkActive.Checked;
             //create a new instance of the customer collection
             clsCustomerCollection CustomerList = new clsCustomerCollection();
-            //set the ThisCustomer property
-            CustomerList.ThisCustomer = ACustomer;
-            //add the new record
-            CustomerList.Add();
+           
+            //if this is a new record i.e. CustomerId = -1 then add the data
+            if (CustomerId == -1)
+            {
+                //set the ThisCustomer property
+                CustomerList.ThisCustomer = ACustomer;
+                //add the new record
+                CustomerList.Add();
+            }
+            //otherwise it must be an update
+            else
+            {
+                //find the record to update
+                CustomerList.ThisCustomer.Find(CustomerId);
+                //set the ThisCustomer property
+                CustomerList.ThisCustomer = ACustomer;
+                //update the record
+                CustomerList.Update();
+            }
             //redirect back to the listpage
             Response.Redirect("CustomerList.aspx");
 
@@ -87,5 +136,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void txtCustomerId_TextChanged(object sender, EventArgs e)
     {
 
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("CustomerList.aspx");
     }
 }
