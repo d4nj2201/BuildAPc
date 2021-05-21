@@ -192,5 +192,62 @@ namespace TestingCustomer
             //test to see that the record was not found
             Assert.IsFalse(Found);
         }
+
+        [TestMethod]
+        public void ReportByUsernameMethodOK()
+        {
+            //create an instance of the class containing unfiltered results
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            //create an instance of the filtered data
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            //apply a blank string (should return all records);
+            FilteredCustomers.ReportByUsername("");
+            //test to see that the two values are the same
+            Assert.AreEqual(AllCustomers.Count, FilteredCustomers.Count);
+        }
+        [TestMethod]
+        public void ReportByUsernameNoneFound()
+        {
+            //create an instance of the filtered data
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            //apply a username that doesn't exist
+            FilteredCustomers.ReportByUsername("xxx xxx");
+            //test to see that there are no records
+            Assert.AreEqual(0, FilteredCustomers.Count);
+        }
+
+        [TestMethod]
+        public void ReportByUsernameTestDataFound()
+        {
+            //create an instance of the filtered data
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            //var to store outcome
+            Boolean OK = true;
+            //apply a username that doesn't exist
+            FilteredCustomers.ReportByUsername("yyyyyyy");
+            //check that the correct number of records are found
+            if (FilteredCustomers.Count == 2)
+            {
+                //check that the first record is ID 1
+                if (FilteredCustomers.CustomerList[0].CustomerId != 1)
+                {
+                    OK = false;
+                }
+                //check that the first second is 2
+                if (FilteredCustomers.CustomerList[1].CustomerId != 2)
+                {
+                    OK = false;
+                }
+                   
+            }
+            else
+            {
+                OK = false;
+            }
+            //test to see that there are no records
+            Assert.IsTrue(OK);
+ 
+        }
     }
+
 }
